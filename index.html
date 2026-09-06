@@ -38,6 +38,7 @@
           sans-serif;
         color: var(--text);
         background: var(--bg);
+        -webkit-tap-highlight-color: transparent;
       }
       button,
       input,
@@ -46,6 +47,7 @@
       }
       button {
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
       }
       .app {
         max-width: 760px;
@@ -116,7 +118,8 @@
       .summary-card,
       .empty,
       .section-card,
-      .calendar-card {
+      .calendar-card,
+      .stats-card {
         background: var(--card);
         border: 1px solid var(--line);
         border-radius: var(--radius);
@@ -194,7 +197,8 @@
         background: #fff;
       }
       .add-btn,
-      .save-btn {
+      .save-btn,
+      .action-btn {
         border: 0;
         background: var(--orange);
         color: #fff;
@@ -202,8 +206,19 @@
         padding: 11px 14px;
         font-weight: 800;
       }
+      .action-btn {
+        background: #fff;
+        color: var(--orange);
+        border: 2px solid var(--orange);
+      }
+      .action-btn.danger {
+        background: var(--red-light);
+        color: #b91c1c;
+        border: 2px solid var(--red);
+      }
       .add-btn:active,
-      .save-btn:active {
+      .save-btn:active,
+      .action-btn:active {
         transform: scale(0.98);
       }
       .hint {
@@ -297,7 +312,7 @@
         background: rgba(255, 255, 255, 0.97);
         border-top: 1px solid var(--line);
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
         backdrop-filter: blur(12px);
       }
@@ -307,12 +322,12 @@
         color: #9ca3af;
         padding: 7px 3px;
         border-radius: 12px;
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 700;
       }
       .nav-btn span {
         display: block;
-        font-size: 21px;
+        font-size: 20px;
         margin-bottom: 2px;
       }
       .nav-btn.active {
@@ -500,6 +515,167 @@
         opacity: 1;
         transform: translate(-50%, 0);
       }
+
+      .stats-card {
+        padding: 16px;
+        margin-bottom: 13px;
+      }
+      .stats-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .stats-title {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 900;
+        font-size: 18px;
+      }
+      .stats-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: var(--orange-light);
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+      .filter-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .filter-btn {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--muted);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .filter-btn.active {
+        background: var(--orange);
+        color: #fff;
+        border-color: var(--orange);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .stat-box {
+        background: #fafafa;
+        border-radius: 13px;
+        padding: 13px;
+        text-align: center;
+      }
+      .stat-box strong {
+        display: block;
+        font-size: 26px;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .stat-box span {
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .stat-box.positive strong {
+        color: var(--green);
+      }
+      .stat-box.negative strong {
+        color: var(--red);
+      }
+      .progress-bar {
+        height: 8px;
+        background: #f3f4f6;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+      .progress-fill {
+        height: 100%;
+        background: var(--green);
+        border-radius: 999px;
+        transition: width 0.3s ease;
+      }
+      .progress-fill.negative {
+        background: var(--red);
+      }
+      .category-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 11px 13px;
+        background: #fafafa;
+        border-radius: 11px;
+        margin-bottom: 7px;
+      }
+      .category-info {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .category-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: var(--orange-light);
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+      }
+      .category-name {
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .category-stats {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .mini-stat {
+        font-size: 11px;
+        font-weight: 800;
+        padding: 3px 7px;
+        border-radius: 999px;
+      }
+      .mini-stat.pos {
+        background: var(--green-light);
+        color: #15803d;
+      }
+      .mini-stat.neg {
+        background: var(--red-light);
+        color: #b91c1c;
+      }
+      .actions-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .actions-row .action-btn {
+        flex: 1;
+        text-align: center;
+      }
+      .summary-percent {
+        font-size: 32px;
+        font-weight: 900;
+        color: var(--orange);
+        display: block;
+        margin-bottom: 4px;
+      }
+      .summary-label {
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 700;
+      }
       @media (max-width: 430px) {
         main {
           padding-left: 12px;
@@ -520,6 +696,18 @@
         }
         .date-input {
           width: 130px;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+        nav {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .nav-btn {
+          font-size: 9px;
+        }
+        .nav-btn span {
+          font-size: 18px;
         }
       }
       @media (min-width: 700px) {
@@ -572,13 +760,10 @@
                 <span class="count" data-count="religion">0</span>
               </div>
               <div class="input-row">
-                <input
-                  class="idea-input"
-                  placeholder="Une idée, un événement…"
-                  maxlength="300"
-                /><button class="add-btn">Ajouter</button>
+                <input class="idea-input" placeholder="Une idée, un événement…" maxlength="300" />
+                <button class="add-btn">Ajouter</button>
               </div>
-              <div class="hint">Entrée pour ajouter</div>
+              <div class="hint">Entrer pour ajouter</div>
               <div class="items"></div>
             </div>
             <div class="section-card" data-category="familiale">
@@ -587,13 +772,10 @@
                 <span class="count" data-count="familiale">0</span>
               </div>
               <div class="input-row">
-                <input
-                  class="idea-input"
-                  placeholder="Une idée, un événement…"
-                  maxlength="300"
-                /><button class="add-btn">Ajouter</button>
+                <input class="idea-input" placeholder="Une idée, un événement…" maxlength="300" />
+                <button class="add-btn">Ajouter</button>
               </div>
-              <div class="hint">Entrée pour ajouter</div>
+              <div class="hint">Entrer pour ajouter</div>
               <div class="items"></div>
             </div>
             <div class="section-card" data-category="sociale">
@@ -602,13 +784,10 @@
                 <span class="count" data-count="sociale">0</span>
               </div>
               <div class="input-row">
-                <input
-                  class="idea-input"
-                  placeholder="Une idée, un événement…"
-                  maxlength="300"
-                /><button class="add-btn">Ajouter</button>
+                <input class="idea-input" placeholder="Une idée, un événement…" maxlength="300" />
+                <button class="add-btn">Ajouter</button>
               </div>
-              <div class="hint">Entrée pour ajouter</div>
+              <div class="hint">Entrer pour ajouter</div>
               <div class="items"></div>
             </div>
             <div class="section-card" data-category="professionnelle">
@@ -619,13 +798,10 @@
                 <span class="count" data-count="professionnelle">0</span>
               </div>
               <div class="input-row">
-                <input
-                  class="idea-input"
-                  placeholder="Une idée, un événement…"
-                  maxlength="300"
-                /><button class="add-btn">Ajouter</button>
+                <input class="idea-input" placeholder="Une idée, un événement…" maxlength="300" />
+                <button class="add-btn">Ajouter</button>
               </div>
-              <div class="hint">Entrée pour ajouter</div>
+              <div class="hint">Entrer pour ajouter</div>
               <div class="items"></div>
             </div>
           </div>
@@ -660,28 +836,111 @@
           <button class="back-btn" id="backCalendar">← Calendrier</button>
           <div id="recapContent"></div>
         </section>
+
+        <section id="page-stats" class="page">
+          <div class="stats-card">
+            <div class="stats-header">
+              <div class="stats-title">
+                <span class="stats-icon">📈</span>
+                Statistiques
+              </div>
+            </div>
+
+            <div class="filter-row">
+              <button class="filter-btn active" data-filter="month">Ce mois</button>
+              <button class="filter-btn" data-filter="30days">30 jours</button>
+              <button class="filter-btn" data-filter="all">Tout</button>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-box">
+                <strong id="totalDays">0</strong>
+                <span>Journées</span>
+              </div>
+              <div class="stat-box positive">
+                <strong id="positiveDays">0</strong>
+                <span>Positives</span>
+              </div>
+              <div class="stat-box negative">
+                <strong id="negativeDays">0</strong>
+                <span>Négatives</span>
+              </div>
+              <div class="stat-box">
+                <strong id="totalItems">0</strong>
+                <span>Éléments</span>
+              </div>
+            </div>
+
+            <div class="stats-card" style="margin-bottom: 13px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 8px;
+                "
+              >
+                <span style="font-weight: 700; font-size: 13px">Balance positive</span>
+                <span class="summary-percent" id="positivePercent">0%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+              </div>
+              <div
+                style="font-size: 11px; color: var(--muted); margin-top: 6px; text-align: center"
+                id="summaryText"
+              >
+                0 jour sur 0 renseignés
+              </div>
+            </div>
+
+            <div class="stats-card" style="margin-bottom: 13px">
+              <div style="font-weight: 800; margin-bottom: 12px; font-size: 15px">
+                📂 Répartition par domaine
+              </div>
+              <div id="categoryBreakdown"></div>
+            </div>
+
+            <div class="actions-row">
+              <button class="action-btn" id="exportBtn">⬇️ Export JSON</button>
+              <button class="action-btn danger" id="clearBtn">🗑️ Effacer données</button>
+            </div>
+          </div>
+        </section>
       </main>
 
       <nav>
-        <button class="nav-btn active" data-page="day"><span>📝</span>Journée</button>
+        <button class="nav-btn active" data-page="day"><span>📝</span>Jour</button>
         <button class="nav-btn" data-page="calendar"><span>📅</span>Calendrier</button>
         <button class="nav-btn" data-page="recap"><span>📊</span>Récap</button>
+        <button class="nav-btn" data-page="stats"><span>📈</span>Stats</button>
       </nav>
       <div class="toast" id="toast"></div>
     </div>
 
     <script>
-      const KEY = "ma-journee-v1";
+      const KEY_V1 = "ma-journee-v1";
+      const KEY_V2 = "ma-journee-v2";
       const categories = [
-        ["religion", "Religion"],
-        ["familiale", "Vie familiale"],
-        ["sociale", "Vie mondaine"],
-        ["professionnelle", "Vie professionnelle"],
+        ["religion", "Religion", "🕌"],
+        ["familiale", "Vie familiale", "👨‍👩‍👧"],
+        ["sociale", "Vie mondaine", "👥"],
+        ["professionnelle", "Vie professionnelle", "💼"],
       ];
-      let data = JSON.parse(localStorage.getItem(KEY) || "{}");
+
+      // Migration des données v1 vers v2
+      let data = JSON.parse(localStorage.getItem(KEY_V2) || "{}");
+      const oldData = JSON.parse(localStorage.getItem(KEY_V1) || "{}");
+
+      if (Object.keys(oldData).length > 0 && Object.keys(data).length === 0) {
+        data = oldData;
+        localStorage.setItem(KEY_V2, JSON.stringify(data));
+        console.log("Migration v1 -> v2 effectuée avec succès !");
+      }
+
       let selectedDate = toISO(new Date());
       let calendarDate = new Date();
-      let editing = false;
+      let currentFilter = "month";
 
       function toISO(d) {
         return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
@@ -705,7 +964,7 @@
         return data[date];
       }
       function save() {
-        localStorage.setItem(KEY, JSON.stringify(data));
+        localStorage.setItem(KEY_V2, JSON.stringify(data));
       }
       function dateLabel(s) {
         return fromISO(s).toLocaleDateString("fr-FR", {
@@ -721,6 +980,79 @@
           month: "long",
           year: "numeric",
         });
+      }
+      function getFilteredDates() {
+        const allDates = Object.keys(data).sort();
+        const today = new Date();
+        let filtered = [];
+
+        if (currentFilter === "all") {
+          filtered = allDates;
+        } else if (currentFilter === "30days") {
+          const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+          filtered = allDates.filter((d) => fromISO(d) >= thirtyDaysAgo);
+        } else if (currentFilter === "month") {
+          const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+          filtered = allDates.filter((d) => fromISO(d) >= monthStart);
+        }
+
+        return filtered;
+      }
+      function calculateStats() {
+        const filteredDates = getFilteredDates();
+        let totalDays = filteredDates.length;
+        let positiveDays = 0;
+        let negativeDays = 0;
+        let totalItems = 0;
+        let totalPositive = 0;
+        let totalNegative = 0;
+        const categoryStats = {};
+
+        categories.forEach(([key]) => {
+          categoryStats[key] = { positive: 0, negative: 0, total: 0 };
+        });
+
+        filteredDates.forEach((date) => {
+          const day = data[date];
+          if (!day) return;
+
+          let dayPositive = false;
+          let dayNegative = false;
+
+          categories.forEach(([key]) => {
+            const items = day[key] || [];
+            items.forEach((item) => {
+              totalItems++;
+              categoryStats[key].total++;
+
+              if (item.status === "positive") {
+                totalPositive++;
+                categoryStats[key].positive++;
+                dayPositive = true;
+              } else {
+                totalNegative++;
+                categoryStats[key].negative++;
+                dayNegative = true;
+              }
+            });
+          });
+
+          if (dayPositive) positiveDays++;
+          if (dayNegative) negativeDays++;
+        });
+
+        const positivePercent = totalItems > 0 ? Math.round((totalPositive / totalItems) * 100) : 0;
+
+        return {
+          totalDays,
+          positiveDays,
+          negativeDays,
+          totalItems,
+          totalPositive,
+          totalNegative,
+          positivePercent,
+          categoryStats,
+        };
       }
 
       function renderDay() {
@@ -748,6 +1080,7 @@
             .join("");
         });
       }
+
       function addItem(cat, input) {
         const text = input.value.trim();
         if (!text) return;
@@ -759,6 +1092,7 @@
         input.focus();
         toast("Élément ajouté");
       }
+
       document.querySelectorAll(".section-card").forEach((card) => {
         const cat = card.dataset.category,
           input = card.querySelector(".idea-input");
@@ -770,6 +1104,7 @@
           }
         });
       });
+
       document.addEventListener("click", (e) => {
         const b = e.target.closest("[data-action]");
         if (!b) return;
@@ -781,10 +1116,12 @@
         save();
         renderDay();
       });
+
       document.getElementById("datePicker").onchange = (e) => {
         selectedDate = e.target.value;
         renderDay();
       };
+
       document.getElementById("saveDay").onclick = () => {
         save();
         toast("Journée enregistrée ✓");
@@ -799,11 +1136,14 @@
           .forEach((b) => b.classList.toggle("active", b.dataset.page === name));
         if (name === "calendar") renderCalendar();
         if (name === "recap") renderRecap(selectedDate);
+        if (name === "stats") renderStats();
         scrollTo({ top: 0, behavior: "smooth" });
       }
+
       document
         .querySelectorAll(".nav-btn")
         .forEach((b) => (b.onclick = () => showPage(b.dataset.page)));
+
       document.getElementById("backCalendar").onclick = () => showPage("calendar");
 
       function renderCalendar() {
@@ -839,10 +1179,12 @@
             }),
         );
       }
+
       document.getElementById("prevMonth").onclick = () => {
         calendarDate.setMonth(calendarDate.getMonth() - 1);
         renderCalendar();
       };
+
       document.getElementById("nextMonth").onclick = () => {
         calendarDate.setMonth(calendarDate.getMonth() + 1);
         renderCalendar();
@@ -862,7 +1204,7 @@
       </div>
     </div>`;
         if (!all.length) {
-          body += `<div class="empty"><div class="empty-icon">🌱</div>Aucune note pour cette journée.<br>Commencez à la remplir depuis l’onglet Journée.</div>`;
+          body += `<div class="empty"><div class="empty-icon">🌱</div>Aucune note pour cette journée.<br>Commencez à la remplir depuis l'onglet Journée.</div>`;
         } else {
           body += `<div class="summary-card">`;
           categories.forEach(([key, label]) => {
@@ -881,6 +1223,98 @@
             renderDay();
           };
       }
+
+      function renderStats() {
+        const stats = calculateStats();
+
+        document.getElementById("totalDays").textContent = stats.totalDays;
+        document.getElementById("positiveDays").textContent = stats.positiveDays;
+        document.getElementById("negativeDays").textContent = stats.negativeDays;
+        document.getElementById("totalItems").textContent = stats.totalItems;
+
+        const percent = stats.positivePercent;
+        document.getElementById("positivePercent").textContent = percent + "%";
+        document.getElementById("progressBar").style.width = percent + "%";
+
+        if (percent >= 70) {
+          document.getElementById("progressBar").className = "progress-fill";
+        } else if (percent >= 40) {
+          document.getElementById("progressBar").className = "progress-fill negative";
+        } else {
+          document.getElementById("progressBar").className = "progress-fill negative";
+        }
+
+        document.getElementById("summaryText").textContent =
+          `${stats.positiveDays} jour sur ${stats.totalDays} renseignés`;
+
+        let categoryHtml = "";
+        categories.forEach(([key, label, icon]) => {
+          const catStats = stats.categoryStats[key];
+          if (catStats.total > 0) {
+            categoryHtml += `
+              <div class="category-row">
+                <div class="category-info">
+                  <span class="category-icon">${icon}</span>
+                  <span class="category-name">${label}</span>
+                </div>
+                <div class="category-stats">
+                  ${catStats.positive > 0 ? `<span class="mini-stat pos">🟢 ${catStats.positive}</span>` : ""}
+                  ${catStats.negative > 0 ? `<span class="mini-stat neg">🔴 ${catStats.negative}</span>` : ""}
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        if (categoryHtml === "") {
+          categoryHtml = `<div class="empty" style="padding: 18px;"><div class="empty-icon">📂</div>Aucune donnée dans cette période</div>`;
+        }
+
+        document.getElementById("categoryBreakdown").innerHTML = categoryHtml;
+      }
+
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.onclick = () => {
+          document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.dataset.filter;
+          renderStats();
+        };
+      });
+
+      document.getElementById("exportBtn").onclick = () => {
+        const exportData = {
+          version: "2.0",
+          exportedAt: new Date().toISOString(),
+          data: data,
+        };
+        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `ma-journee-export-${toISO(new Date())}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        toast("Export JSON téléchargé ✓");
+      };
+
+      document.getElementById("clearBtn").onclick = () => {
+        if (
+          confirm(
+            "⚠️ Êtes-vous sûr de vouloir effacer TOUTES vos données ? Cette action est irréversible !",
+          )
+        ) {
+          data = {};
+          save();
+          localStorage.removeItem(KEY_V1);
+          renderDay();
+          renderStats();
+          toast("Données effacées ✓");
+        }
+      };
+
       function toast(msg) {
         const t = document.getElementById("toast");
         t.textContent = msg;
@@ -888,6 +1322,7 @@
         clearTimeout(window._toast);
         window._toast = setTimeout(() => t.classList.remove("show"), 1800);
       }
+
       renderDay();
     </script>
   </body>
